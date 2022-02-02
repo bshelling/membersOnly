@@ -17,15 +17,24 @@
     "url": "https://github.com/Automattic/_s/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
     "@wordpress/scripts": "^19.2.2",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.6.0",
     "dir-archiver": "^1.1.1",
     "grunt": "^1.4.1",
     "grunt-cli": "^1.4.3",
     "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^5.0.1",
     "grunt-contrib-watch": "^1.1.0",
+    "mini-css-extract-plugin": "^2.5.3",
     "node-sass": "^7.0.1",
-    "rtlcss": "^3.5.0"
+    "rtlcss": "^3.5.0",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.4.0",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
   },
   "rtlcssConfig": {
     "options": {
@@ -41,14 +50,7 @@
     "map": false
   },
   "scripts": {
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-    "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
-    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
-    "grunt": "./node_modules/.bin/grunt",
-    "grunt:dev": "./node_modules/.bin/grunt dev",
-    "grunt:watch": "./node_modules/.bin/grunt watch"
+    "build": "./node_modules/.bin/webpack --config webpack.config.js --mode development",
+    "build:prod": "./node_modules/.bin/webpack --config webpack.config.js --mode production"
   }
 }
