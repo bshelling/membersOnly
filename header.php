@@ -8,8 +8,7 @@
  *
  * @package _s
  */
-	$context = Timber::context();
-		$context['posts'] = Timber::get_post();
+	    $context = Timber::context();
 		Timber::render('layout/header.twig',$context);
 
 
