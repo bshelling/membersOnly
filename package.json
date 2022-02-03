@@ -50,8 +50,12 @@
     "map": false
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config webpack.config.js --node-env development",
-    "build:dev": "./node_modules/.bin/webpack --config webpack.config.js --node-env development --watch",
-    "build:prod": "./node_modules/.bin/webpack --config webpack.config.js --env environment=production"
+    "build:stylesDev": "./node_modules/.bin/webpack --config wp/styles.config.js --env environment=development --watch",
+    "build:scriptsDev": "./node_modules/.bin/webpack --config wp/script.config.js --env environment=development --watch",
+    "build:dev": "./node_modules/.bin/webpack --config wp/webpack.config.js --env environment=development --watch",
+    "build:prod": "./node_modules/.bin/webpack --config wp/webpack.config.js --env environment=production"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3"
   }
 }

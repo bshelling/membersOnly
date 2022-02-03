@@ -3,9 +3,6 @@ const miniCss = require("mini-css-extract-plugin");
 const { env } = require("process");
 
 
-console.log(env)
-
-
 const styles = (env, argv) => {
   if (env.environment == "development") {
     console.log("------------------------------------------------");
@@ -73,8 +70,7 @@ const scripts = (env, argv) => {
       rules: [
         {
           test: /\.(js)$/,
-          use: "babel-loader",
-          exclude: /node_modules/,
+          use: "babel-loader"
         },
       ],
     },
