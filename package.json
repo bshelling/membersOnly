@@ -50,7 +50,8 @@
     "map": false
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config webpack.config.js --env environment=development",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js --node-env development",
+    "build:dev": "./node_modules/.bin/webpack --config webpack.config.js --node-env development --watch",
     "build:prod": "./node_modules/.bin/webpack --config webpack.config.js --env environment=production"
   }
 }
