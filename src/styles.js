@@ -1,2 +1,2 @@
 
-import './sass/web.sass'
+require('./sass/web.sass')

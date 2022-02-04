@@ -16,7 +16,9 @@ const styles = (env, argv) => {
   }
 
   return {
-    entry: "./src/styles.js",
+    entry: {
+      site:"./src/styles.js"
+    },
     module: {
       rules: [
         {
@@ -33,6 +35,7 @@ const styles = (env, argv) => {
               loader: "sass-loader",
               options: {
                 sourceMap: true,
+                implementation: require.resolve('sass')
               },
             },
           ],
@@ -41,9 +44,12 @@ const styles = (env, argv) => {
     },
     plugins: [
       new miniCss({
-        filename: "../ctmd/css/site.css",
+        filename: "../ctmd/css/[name].css",
       }),
     ],
+    watchOptions:{
+      poll: 1000
+    },
     mode: env.environment == "development" ? "development" : "production",
   };
 };
@@ -70,11 +76,18 @@ const scripts = (env, argv) => {
       rules: [
         {
           test: /\.(js)$/,
-          use: "babel-loader"
+          use: {
+            loader:"babel-loader",
+          options:{
+            presets: ['@babel/preset-env']
+          }}
         },
       ],
     },
     mode: env.environment == "development" ? "development" : "production",
+    watchOptions:{
+      poll: 1000
+    }
   };
 };
 
