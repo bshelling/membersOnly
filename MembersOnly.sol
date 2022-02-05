@@ -60,7 +60,6 @@ contract MembersOnly {
    }
 
     function getMember(uint tagId) public {
-
         member = members[tagId];
     }
 
