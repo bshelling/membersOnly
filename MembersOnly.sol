@@ -10,34 +10,36 @@ contract MembersOnly {
    struct Member {
        uint tagId;
        address member;
-       unit transaction;
-
+       uint lastTransaction;
+       uint transactionTime;
+       address previousOwner;
    }
 
-   address private clubOwner;
+   address payable private clubOwner;
    int public cards;
    uint public clubPrice;
-   address public member;
+   Member public member;
    mapping (uint => Member) private members;
 
    constructor(){
-       clubOwner = msg.sender;
+       clubOwner = payable(msg.sender);
        cards = 100;
-       clubPrice = 1000;
+       clubPrice = 300000000000000000;
    }
 
    error noMoreMembers(int available);
 
-
 /*
  * 
 */
-   function joinClub(uint tagId) public {
+   function joinClub(uint tagId) public payable{
 
+       clubOwner.transfer(clubPrice);
        Member storage m = members[tagId];
        m.tagId = tagId;
        m.member = msg.sender;
-       m.transaction = 300000000000000000;
+       m.lastTransaction = clubPrice;
+       m.transactionTime = block.timestamp;
 
        if(cards > 0){
            cards -= 1;
@@ -53,9 +55,19 @@ contract MembersOnly {
 
 */
 
-   function transferMembership(address seller, int amount) public {
-
+   function transferMembership(uint tagId, uint amount) public payable {
        
+       address payable seller = payable(members[tagId].member);
+
+       clubOwner.transfer(clubPrice/2);
+       seller.transfer(amount);
+       address previousOwner = members[tagId].member;
+       Member storage m = members[tagId];
+       m.tagId = tagId;
+       m.member = msg.sender;
+       m.lastTransaction = clubPrice + amount;
+       m.transactionTime = block.timestamp;
+       m.previousOwner = previousOwner;
 
    }
 
