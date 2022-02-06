@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: GPL=3.0
 pragma solidity ^0.8.0;
 
-
 /// @title Members Only Smart Contract
 /// @author bshellingcodes@gmail.com
+/// @notice Members Only Smart Contract's functionality enables users to join a club with the purchase of a membership from the limited supply. A membership can be sold and transferred to the a new member.
+/// @notice All public variables and functions are for testing purposes
 
 contract MembersOnly {
    
    struct Member {
-       uint tagId;
+       uint membershipId;
        address member;
        uint lastTransaction;
        uint transactionTime;
@@ -27,16 +28,17 @@ contract MembersOnly {
        clubPrice = 300000000000000000;
    }
 
+/// @notice Returns availabe memberships 
    error noMoreMembers(int available);
 
-/*
- * 
-*/
-   function joinClub(uint tagId) public payable{
+/// Join Club `membershipId`
+/// @param membershipId
+/// @notice New member pays club price to join. No memberships can be purchased if the cards value is 0
+   function joinClub(uint membershipId) public payable{
 
        clubOwner.transfer(clubPrice);
-       Member storage m = members[tagId];
-       m.tagId = tagId;
+       Member storage m = members[membershipId];
+       m.membershipId = membershipId;
        m.member = msg.sender;
        m.lastTransaction = clubPrice;
        m.transactionTime = block.timestamp;
@@ -46,24 +48,22 @@ contract MembersOnly {
        }
        else{
            revert noMoreMembers({
-               available: cards
+               taken: member.length
            });
        }
    }
 
-/*
-
-*/
-
-   function transferMembership(uint tagId, uint amount) public payable {
+/// Transfer Membership `membershipId` & 'amount`
+/// @param membershipId
+/// @notice Memberships can be purchase by users that are not already members. The new member must agree to the seller's price. If agreed the new member must pay the amount plus 15% of the club price
+   function transferMembership(uint membershipId, uint amount) public payable {
        
-       address payable seller = payable(members[tagId].member);
-
+       address payable seller = payable(members[membershipId].member);
        clubOwner.transfer(clubPrice/2);
        seller.transfer(amount);
-       address previousOwner = members[tagId].member;
-       Member storage m = members[tagId];
-       m.tagId = tagId;
+       address previousOwner = members[membershipId].member;
+       Member storage m = members[membershipId];
+       m.membershipId = membershipId;
        m.member = msg.sender;
        m.lastTransaction = clubPrice + amount;
        m.transactionTime = block.timestamp;
@@ -71,8 +71,11 @@ contract MembersOnly {
 
    }
 
-    function getMember(uint tagId) public {
-        member = members[tagId];
+/// Get Member `membershipId``
+/// @param membershipId
+/// @notice Identifies the current membership
+    function getMember(uint membershipId) public {
+        member = members[membershipId];
     }
 
 }
