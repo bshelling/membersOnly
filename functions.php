@@ -8,6 +8,7 @@
  */
 
 require_once(__DIR__.'/vendor/autoload.php');
+require_once(__DIR__.'/inc/navs.php');
 $timber = new Timber\Timber();
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -199,3 +200,5 @@ add_action('rest_api_init',function(){
 		'callback' => 'gitTrigger'
 	]);
 });
+
+

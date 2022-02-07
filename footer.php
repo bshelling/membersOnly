@@ -10,6 +10,9 @@
  */
 
 $context = Timber::context();
+
+$context['footerMenu'] = $footerMenu;
+
 Timber::render('layout/footer.twig',$context);
 
 

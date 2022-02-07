@@ -22,6 +22,11 @@
 				<div class="footerMenu">
 					<ul class="footerNav">
 					
+					   {% for item in footerMenu.items %}
+							<li>
+								<a href="{{item.link}}">{{item.title}}</a>
+							</li>
+					   {% endfor %}
 					</ul>
 				</div>
 			</div>	
