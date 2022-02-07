@@ -20,7 +20,8 @@ contract MembersOnly {
    int public cards;
    uint public clubPrice;
    Member public member;
-   mapping (uint => Member) private members;
+   mapping (uint => Member) private membership;
+   Member[] private members;
 
    constructor(){
        clubOwner = payable(msg.sender);
@@ -28,49 +29,52 @@ contract MembersOnly {
        clubPrice = 300000000000000000;
    }
 
-   /// Events
+   // Events
    event Join(address _newMember, uint joinDate);
    event Transfer(address _newMember,address _oldMember, uint transferDate);
    event Available(uint memberships);
 
-/// @notice Returns availabe memberships 
-   error noMoreMembers(int available);
+// @notice Returns availabe memberships 
+   error noMoreMembers(uint taken);
 
-/// Join Club `membershipId`
-/// @param membershipId
-/// @notice New member pays club price to join. No memberships can be purchased if the cards value is 0
+// Join Club `membershipId`
+// @param membershipId
+// @notice New member pays club price to join. No memberships can be purchased if the cards value is 0
    function joinClub(uint membershipId) public payable{
 
        clubOwner.transfer(clubPrice);
-       Member storage m = members[membershipId];
+       Member storage m = membership[membershipId];
        m.membershipId = membershipId;
        m.member = msg.sender;
        m.lastTransaction = clubPrice;
        m.transactionTime = block.timestamp;
+       members.push(m);
 
        if(cards > 0){
            cards -= 1;
            emit Join(msg.sender, block.timestamp);
        }
        else{
+
+           emit Available(members.length);
            revert noMoreMembers({
                taken: members.length
            });
-           emit Available(members.length);
+           
        }
 
    }
 
-/// Transfer Membership `membershipId` & 'amount`
-/// @param membershipId
-/// @notice Memberships can be purchase by users that are not already members. The new member must agree to the seller's price. If agreed the new member must pay the amount plus 15% of the club price
+// Transfer Membership `membershipId` & 'amount`
+// @param membershipId
+// @notice Memberships can be purchase by users that are not already members. The new member must agree to the seller's price. If agreed the new member must pay the amount plus 15% of the club price
    function transferMembership(uint membershipId, uint amount) public payable {
        
-       address payable seller = payable(members[membershipId].member);
+       address payable seller = payable(membership[membershipId].member);
        clubOwner.transfer(clubPrice/2);
        seller.transfer(amount);
-       address previousOwner = members[membershipId].member;
-       Member storage m = members[membershipId];
+       address previousOwner = membership[membershipId].member;
+       Member storage m = membership[membershipId];
        m.membershipId = membershipId;
        m.member = msg.sender;
        m.lastTransaction = clubPrice + amount;
@@ -80,11 +84,11 @@ contract MembersOnly {
 
    }
 
-/// Get Member `membershipId``
-/// @param membershipId
-/// @notice Identifies the current membership
+// Get Member `membershipId``
+// @param membershipId
+// @notice Identifies the current membership
     function getMember(uint membershipId) public {
-        member = members[membershipId];
+        member = membership[membershipId];
     }
 
 }
