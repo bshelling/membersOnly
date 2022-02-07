@@ -28,6 +28,11 @@ contract MembersOnly {
        clubPrice = 300000000000000000;
    }
 
+   /// Events
+   event Join(address _newMember, uint joinDate);
+   event Transfer(address _newMember,address _oldMember, uint transferDate);
+   event Available(uint memberships);
+
 /// @notice Returns availabe memberships 
    error noMoreMembers(int available);
 
@@ -45,12 +50,15 @@ contract MembersOnly {
 
        if(cards > 0){
            cards -= 1;
+           emit Join(msg.sender, block.timestamp);
        }
        else{
            revert noMoreMembers({
-               taken: member.length
+               taken: members.length
            });
+           emit Available(members.length);
        }
+
    }
 
 /// Transfer Membership `membershipId` & 'amount`
@@ -68,6 +76,7 @@ contract MembersOnly {
        m.lastTransaction = clubPrice + amount;
        m.transactionTime = block.timestamp;
        m.previousOwner = previousOwner;
+       emit Transfer(msg.sender, previousOwner, block.timestamp);
 
    }
 
