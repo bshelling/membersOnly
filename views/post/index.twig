@@ -1,0 +1,43 @@
+
+{% extends "layout/base.twig" %}
+
+
+
+{% block content %}
+
+    <div class="row">
+
+    <div class="col-md-6 offset-md-3">
+    
+    <div class="article-post">
+        <div class="headline-area">
+        <h1 class="title">{{post.title}}</h1>
+        <p class="excerpt">How Ghost allows you to turn anonymous readers into an audience of active subscribers, so you know what's working and what isn't.</p>
+        </div>
+        <div class="date">
+            <div class="profile-img">
+                <a href={{post.author.link}}><img src="{{post.author.avatar({size: 150})}}"/></a>
+            </div>
+            <div class="profile-date">
+                    <p class="author">{{post.author.name}}</p>
+                    {{post.date('F m, Y')}}
+            </div>
+        </div>
+        <div class="featured-img">
+            <img src={{post.thumbnail.src}} class="img-fluid"/>
+        </div>
+        <div class="content">
+            {{post.content}}
+        </div>
+
+        <div class="authorSection">
+            <h2>About the Author</h2>
+            <p>{{post.author.description}}</p>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}

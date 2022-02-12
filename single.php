@@ -9,4 +9,5 @@
 
 
    $context = Timber::context();
-   Timber::render('single/index.twig',$context);
+   $context['post'] = new Timber\Post();
+   Timber::render('post/index.twig',$context);
