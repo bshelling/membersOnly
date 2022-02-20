@@ -7,19 +7,22 @@
 
     <div class="row blogCategory">
 
+
+    {# Discover Category #}
+
     <div class="col-md-10 offset-md-1">
 
         <div class="titleBar">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
             <div class="title">
-                <h2>Category title</h2>
+                <h2>Discover</h2>
             </div>
                 </div>
 
                 <div class="col-md-6 col-sm-6">
             <div class="categoryLink">
-                <h2>See More</h2>
+                <h2><a href="{{function('getCategoryLink','Discover')}}">See More</a></h2>
             </div>
 
 
@@ -33,47 +36,216 @@
     <div class="col-md-10 offset-md-1">
             <div class="row">
 
+            {% for discoverPost in discoverPosts %}
                 <div class="col-md-4 col-sm-12">
                     <div class="post">
                         <div class="image">
-                            <a href="">
+                            <a href={{discoverPost.link}}>
                             <img src="https://picsum.photos/325" class="img-fluid"/>
                             </a>
                         </div>
                         <div class="details">
-                            <h3><a href="">Post Title</a></h3>
-                            <p class="date">July 7, 2021</p>
+                            <h3><a href="">{{discoverPost.title}}</a></h3>
+                            <p class="date">{{discoverPost.date}}</p>
                         </div>
                     </div>
                 </div>
+            {% endfor %}
 
-                <div class="col-md-4">
-                    <div class="post">
-                        <div class="image">
-                            <img src="https://picsum.photos/325" class="img-fluid"/>
-                        </div>
-                        <div class="details">
-                            <h3>Post Title</h3>
-                            <p class="date">July 7, 2021</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="post">
-                        <div class="image">
-                            <img src="https://picsum.photos/325" class="img-fluid"/>
-                        </div>
-                        <div class="details">
-                            <h3>Post Title</h3>
-                            <p class="date">July 7, 2021</p>
-                        </div>
-                    </div>
-                </div>
+        
 
 
             </div>
     </div>
+
+    {# Environment Category #}
+
+    <div class="col-md-10 offset-md-1">
+
+        <div class="titleBar">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+            <div class="title">
+                <h2>Environment</h2>
+            </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+            <div class="categoryLink">
+                <h2><a href="{{function('getCategoryLink','Environment')}}">See More</a></h2>
+            </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-10 offset-md-1">
+            <div class="row">
+
+            {% for envPost in envPosts %}
+                <div class="col-md-4 col-sm-12">
+                    <div class="post">
+                        <div class="image">
+                            <a href={{envPost.link}}>
+                            <img src="https://picsum.photos/325" class="img-fluid"/>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h3><a href="">{{envPost.title}}</a></h3>
+                            <p class="date">{{envPost.date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+    </div>
+
+
+    {# Inspiration Category #}
+
+    <div class="col-md-10 offset-md-1">
+
+        <div class="titleBar">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+            <div class="title">
+                <h2>Inspiration</h2>
+            </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+            <div class="categoryLink">
+                <h2><a href="{{function('getCategoryLink','Inspiration')}}">See More</a></h2>
+            </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-10 offset-md-1">
+            <div class="row">
+
+            {% for inspPost in inspPosts %}
+                <div class="col-md-4 col-sm-12">
+                    <div class="post">
+                        <div class="image">
+                            <a href={{inspPost.link}}>
+                            <img src="https://picsum.photos/325" class="img-fluid"/>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h3><a href="">{{inspPost.title}}</a></h3>
+                            <p class="date">{{inspPost.date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+    </div>
+
+
+    {# Mindset Category #}
+
+    <div class="col-md-10 offset-md-1">
+
+        <div class="titleBar">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+            <div class="title">
+                <h2>Mindset</h2>
+            </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+            <div class="categoryLink">
+                <h2><a href="{{function('getCategoryLink','Mindset')}}">See More</a></h2>
+            </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-10 offset-md-1">
+            <div class="row">
+
+            {% for mindPost in mindPosts %}
+                <div class="col-md-4 col-sm-12">
+                    <div class="post">
+                        <div class="image">
+                            <a href={{mindPost.link}}>
+                            <img src="https://picsum.photos/325" class="img-fluid"/>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h3><a href="">{{mindPost.title}}</a></h3>
+                            <p class="date">{{mindPost.date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+    </div>
+
+
+    {# Process Category #}
+
+    <div class="col-md-10 offset-md-1">
+
+        <div class="titleBar">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+            <div class="title">
+                <h2>Process</h2>
+            </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+            <div class="categoryLink">
+                <h2><a href="{{function('getCategoryLink','Process')}}">See More</a></h2>
+            </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-10 offset-md-1">
+            <div class="row">
+
+            {% for processPost in processPosts %}
+                <div class="col-md-4 col-sm-12">
+                    <div class="post">
+                        <div class="image">
+                            <a href={{processPost.link}}>
+                            <img src="https://picsum.photos/325" class="img-fluid"/>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h3><a href="">{{proccessPost.title}}</a></h3>
+                            <p class="date">{{processPost.date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+    </div>
+
+
 
     </div>
 

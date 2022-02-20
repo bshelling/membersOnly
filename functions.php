@@ -201,4 +201,9 @@ add_action('rest_api_init',function(){
 	]);
 });
 
+function getCategoryLink($catgoryName){
 
+	$link = get_category_link(get_cat_ID($catgoryName));
+
+	return $link;
+}
