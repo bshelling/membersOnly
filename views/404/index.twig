@@ -5,7 +5,15 @@
 
 {% block content %}
 
-    Home
-
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <div class="notfound">
+        <h2>Oops!! We can't seem to find the page you're looking for. Try searching for it. </h2>
+        <div class="searchForm">
+            {{function('get_search_form')}}
+        </div>
+    </div>
+</div>
+</div>
 
 {% endblock %}

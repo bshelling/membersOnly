@@ -1,0 +1,45 @@
+
+{% extends "layout/base.twig" %}
+
+
+
+{% block content %}
+
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <div class="notfound">
+        <div class="searchForm">
+            {{function('get_search_form')}}
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <div class="searchResults">
+        {% if results%}
+        <div class="count">
+           {{function('getPostsCount',results)}} Results Found for {{function('get_query_var','s')}}
+        </div>
+        {% for result in results %}
+            <div class="result">
+            <h2>{{result.title}}</h2>
+            <p class="details">{% if result.category().name %}{{result.category().name}} | {% endif %}  {{result.date('F m, Y')}} | {{result.author.name}}</p>
+            <div class="excerpt">
+                <p>{{result.preview.length(50)}}
+            </div>
+            </div>
+        {% endfor %}
+        {% else %}
+              <div class="notfound">
+        <h2>No results found for {{function('get_query_var','s')}}</h2>
+     
+    </div>
+        {% endif %}
+        
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
