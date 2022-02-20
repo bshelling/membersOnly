@@ -4,7 +4,54 @@
 
 
 {% block content %}
+<div class="row">
+<div class="col-md-8 offset-md-2">
+    <div class="cat-pageTitle">
+            <h1>{{function('single_term_title')}}</h1>
+    </div>
+    <div class="cat-pageDescription">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+</div>
+</div>
 
-    <h1>Archive</h1
+<div class="row">
+<div class="col-md-8 offset-md-2">
+
+    <div class="searchResults catResults">
+        {% if results%}
+
+<div class="row"> 
+        {% for result in results %}
+            <div class="result col-md-4">
+             <div class="image">
+                            <a href={{discoverPost.link}}>
+                            <img src="https://picsum.photos/300" class="img-fluid"/>
+                            </a>
+                        </div>
+                <h2>{{result.title}}</h2>
+                <div class="details">
+                    <div class="profileImg">
+                        <img width="32" src="{{result.author.avatar()}}"/>
+                    </div>
+                    <div class="profileDetail">
+                       {{result.date('F m, Y')}} <br>{{result.author.name}}
+                    </div>
+                </div>
+     
+            </div>
+        {% endfor %}
+        {% else %}
+              <div class="notfound">
+        <h2>No results found for {{function('get_query_var','s')}}</h2>
+     
+    </div>
+        {% endif %}
+        
+    </div>
+    </div>
+</div>
+</div>
+
 
 {% endblock %}

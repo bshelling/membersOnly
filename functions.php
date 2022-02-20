@@ -212,3 +212,5 @@ function getPostsCount($arr){
 
 	return count($arr);
 }
+
+apply_filters('get_the_archive_title_prefix',' ');
