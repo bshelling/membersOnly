@@ -207,3 +207,8 @@ function getCategoryLink($catgoryName){
 
 	return $link;
 }
+
+function getPostsCount($arr){
+
+	return count($arr);
+}
