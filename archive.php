@@ -8,7 +8,7 @@
  */
 
 
-
+		if ( have_posts() ) : ?>
 
 
 $context = Timber::context();
@@ -17,4 +17,19 @@ Timber::render('archive/index.twig',$context);
 		
 
 
+<<<<<<< HEAD
+=======
+			endwhile;
+
+			the_posts_navigation();
+
+		else :
+
+			get_template_part( 'template-parts/content', 'none' );
+
+		endif;
+		?>
+
+
+>>>>>>> development
 

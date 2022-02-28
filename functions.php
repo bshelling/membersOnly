@@ -45,7 +45,7 @@ function _s_setup() {
 
 	/*
 		* Enable support for Post Thumbnails on posts and pages.
-		*
+    
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
@@ -53,7 +53,7 @@ function _s_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', '_s' ),
+			'mainNav' => esc_html__( 'Primary Nav', '_s' ),
 		)
 	);
 
@@ -201,16 +201,3 @@ add_action('rest_api_init',function(){
 	]);
 });
 
-function getCategoryLink($catgoryName){
-
-	$link = get_category_link(get_cat_ID($catgoryName));
-
-	return $link;
-}
-
-function getPostsCount($arr){
-
-	return count($arr);
-}
-
-apply_filters('get_the_archive_title_prefix',' ');

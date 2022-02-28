@@ -38,6 +38,39 @@
     </div>
 
     </div>
+
+    <div class="col-md-6 offset-md-3 moreCats">
+        <div class="title">
+            <h2>More from {{post.category()}} </h2>
+        </div>
+        <div class="row">
+            {% for catItem in catArticles %}
+                <div class="col-md-4 col-sm-12">
+                    <div class="articleWidget">
+                        {% if catItem.thumbnail.src %}
+                        <div class="img">
+                            <img src="{{catItem.thumbnail.src}}"/>
+                        </div>
+                        {% else %}
+                            <div class="img blackBox">
+
+                            </div>
+                        {% endif %}
+                        <div class="title">
+                            <h1>{{catItem.title}}</h1>
+                            <p class="date">{{catItem.date('F m, Y')}}</p>
+                        </div>
+                        <div class="excerpt">
+                            {{catItem.preview.length(15).read_more(" ")}}
+                        </div>
+                        <a href="{{catItem.link}}" class="readMore">Read More </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+
+    </div>
     </div>
 
 {% endblock %}
