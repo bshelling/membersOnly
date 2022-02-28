@@ -8,9 +8,7 @@
  */
 
 
-	<!-- <main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
+		if ( have_posts() ) : ?>
 
 			<header class="page-header">
 				<?php
@@ -42,5 +40,5 @@
 		endif;
 		?>
 
-	</main>#main -->
+
 
