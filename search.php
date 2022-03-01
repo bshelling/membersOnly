@@ -11,5 +11,5 @@
 
 $context = Timber::context();
 $context['results'] = Timber::get_posts();
-Timber::render('archive/index.twig',$context);
+Timber::render('search/index.twig',$context);
 

@@ -201,3 +201,8 @@ add_action('rest_api_init',function(){
 	]);
 });
 
+function getPostsCount($count){
+
+
+	return count($count);
+}

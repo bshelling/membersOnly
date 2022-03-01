@@ -23,8 +23,8 @@
         </div>
         {% for result in results %}
             <div class="result">
-            <h2>{{result.title}}</h2>
-            <p class="details">{% if result.category().name %}{{result.category().name}} | {% endif %}  {{result.date('F m, Y')}} | {{result.author.name}}</p>
+            <h2><a href="{{result.link}}">{{result.title}}</a></h2>
+            <p class="details">Category: {% if result.category().name %}{{result.category().name}} | {% endif %}  {{result.date('F m, Y')}} | {{result.author.name}}</p>
             <div class="excerpt">
                 <p>{{result.preview.length(50)}}
             </div>
@@ -32,7 +32,7 @@
         {% endfor %}
         {% else %}
               <div class="notfound">
-        <h2>No results found for {{function('get_query_var','s')}}</h2>
+              <h2>No results found for {{function('get_query_var','s')}}</h2>
      
     </div>
         {% endif %}
